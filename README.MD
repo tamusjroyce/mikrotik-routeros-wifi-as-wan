@@ -3,7 +3,8 @@
 RouterOS WiFi-as-WAN automation for MikroTik devices, plus browser and native
 control apps.
 
-This repo was built with GitHub Copilot and ChatGPT Codex. Some code is vibe, has not been reviewed. Some code has been reviewed
+This repo was built with GitHub Copilot and ChatGPT Codex. Some code is vibe,
+has not been reviewed. Some code has been reviewed
 
 ## 1. Script
 
@@ -92,6 +93,16 @@ is the native Kotlin Android shell.
 - Injects a native backend bridge into the shared web app
 - Intended for Play Store or sideloaded native Android packaging
 
+## Screenshots
+
+### App controls
+
+![WiFi as WAN controls](docs/screenshots/phone-app-controls.png)
+
+### Script editor
+
+![WiFi as WAN script editor](docs/screenshots/phone-app-script-editor.png)
+
 ## 3. e2e Tests
 
 There are two e2e areas:
@@ -119,6 +130,12 @@ It covers:
 - Router status rendering
 - Script editor interactions
 - Upload/apply and undo flows
+
+Latest app e2e run on July 24, 2026:
+
+- The suite ran, but both tests failed on router-state waits.
+- `#internetReachable` did not become `Online` within 15 seconds.
+- `#scriptUploaded` did not become `Uploaded` within 15 seconds.
 
 ## Structure
 
