@@ -3,7 +3,7 @@
 RouterOS WiFi-as-WAN automation for MikroTik devices, plus browser and native
 control apps.
 
-This repo was vibe coded with GitHub Copilot and ChatGPT Codex.
+This repo was built with GitHub Copilot and ChatGPT Codex. Some code is vibe, has not been reviewed. Some code has been reviewed
 
 ## 1. Script
 
