@@ -1,0 +1,66 @@
+# OS / editor
+.DS_Store
+Thumbs.db
+Desktop.ini
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs / temp
+*.log
+*.tmp
+*.temp
+tmp/
+temp/
+
+# Node / web
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+dist/
+build/
+.parcel-cache/
+.vite/
+.next/
+.nuxt/
+coverage/
+
+# Deno
+.deno/
+
+# Rust / Tauri
+target/
+Cargo.lock
+src-tauri/target/
+
+# Swift / Xcode
+.build/
+DerivedData/
+*.xcodeproj/project.xcworkspace/xcuserdata/
+*.xcodeproj/xcuserdata/
+*.xcworkspace/xcuserdata/
+*.xcuserdatad/
+*.xcuserstate
+
+# Android / Gradle
+.gradle/
+local.properties
+**/build/
+*.iml
+captures/
+
+# Tauri / mobile synced web assets
+phone-apps-ios/Web/
+phone-apps-android/app/src/main/assets/web/
+
+# Playwright / browser artifacts
+playwright-report/
+test-results/
+
+# Environment / secrets
+.env
+.env.*
+!.env.example

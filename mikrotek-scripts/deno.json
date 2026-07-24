@@ -1,0 +1,13 @@
+{
+  "tasks": {
+    "apply:wifi-as-wan": "deno run -A apply-wifi-as-wan.ts"
+  },
+  "compilerOptions": {
+    "lib": ["deno.ns", "dom", "dom.iterable"]
+  },
+  "fmt": {
+    "lineWidth": 100,
+    "semiColons": true,
+    "singleQuote": false
+  }
+}

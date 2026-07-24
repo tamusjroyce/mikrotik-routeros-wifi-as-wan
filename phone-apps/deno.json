@@ -1,0 +1,17 @@
+{
+  "tasks": {
+    "dev": "deno run -A server/server.ts",
+    "check": "deno check server/server.ts shared/script-vars_test.ts e2e/app.test.ts",
+    "test": "deno test -A shared server",
+    "test:e2e": "deno test -A e2e/app.test.ts",
+    "fmt": "deno fmt"
+  },
+  "compilerOptions": {
+    "lib": ["deno.ns", "dom", "dom.iterable"]
+  },
+  "fmt": {
+    "lineWidth": 100,
+    "semiColons": true,
+    "singleQuote": false
+  }
+}

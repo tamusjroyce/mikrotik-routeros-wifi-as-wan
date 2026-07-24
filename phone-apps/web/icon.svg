@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="WiFi as WAN">
+  <rect width="128" height="128" rx="24" fill="#1e5b50" />
+  <path
+    d="M24 54c22-20 58-20 80 0"
+    fill="none"
+    stroke="#d8fff5"
+    stroke-width="10"
+    stroke-linecap="round"
+  />
+  <path
+    d="M40 72c13-12 35-12 48 0"
+    fill="none"
+    stroke="#d8fff5"
+    stroke-width="10"
+    stroke-linecap="round"
+  />
+  <circle cx="64" cy="90" r="8" fill="#d8fff5" />
+</svg>

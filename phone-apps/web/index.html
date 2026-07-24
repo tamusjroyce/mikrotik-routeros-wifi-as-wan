@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#1e5b50">
+    <title>WiFi as WAN</title>
+    <link rel="manifest" href="./manifest.json">
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="topbar" aria-labelledby="app-title">
+        <div>
+          <h1 id="app-title">WiFi as WAN</h1>
+          <p id="statusLine">Loading router profile...</p>
+        </div>
+        <button
+          id="refreshStatus"
+          class="icon-button"
+          title="Refresh status"
+          aria-label="Refresh status"
+        >
+          ↻
+        </button>
+      </section>
+
+      <section class="status-grid" aria-label="Router status">
+        <div class="metric">
+          <span>Router</span>
+          <strong id="routerReachable">Unknown</strong>
+        </div>
+        <div class="metric">
+          <span>Internet</span>
+          <strong id="internetReachable">Unknown</strong>
+        </div>
+        <div class="metric">
+          <span>WAN</span>
+          <strong id="activeWan">Unknown</strong>
+        </div>
+        <div class="metric">
+          <span>Script</span>
+          <strong id="scriptUploaded">Unknown</strong>
+        </div>
+        <div class="metric">
+          <span>RX rate</span>
+          <strong id="rxRate">Unknown</strong>
+        </div>
+        <div class="metric">
+          <span>TX rate</span>
+          <strong id="txRate">Unknown</strong>
+        </div>
+        <div class="metric">
+          <span>Traffic</span>
+          <strong id="trafficRate">Unknown</strong>
+        </div>
+        <div class="metric">
+          <span>Signal</span>
+          <strong id="signalLevel">Unknown</strong>
+        </div>
+        <div class="metric">
+          <span>Path</span>
+          <strong id="connectionPath">Unknown</strong>
+        </div>
+      </section>
+
+      <nav class="tabbar" aria-label="App sections">
+        <button type="button" id="showControlsTab" class="tab-button active">Controls</button>
+        <button type="button" id="showScriptTab" class="tab-button">Upload RSC Script</button>
+      </nav>
+
+      <section id="controlsTab" class="tab-panel active">
+        <form id="configForm" class="panel">
+          <h2>Router Access</h2>
+          <p class="help-text section-note">
+            This PWA talks directly to RouterOS REST. For installable mobile and desktop use, point
+            it at RouterOS HTTPS or serve the app from the router over `www-ssl`.
+          </p>
+          <div class="field-grid">
+            <label>
+              <span>Router URL</span>
+              <input name="url" autocomplete="url" value="http://192.168.88.1">
+            </label>
+            <label>
+              <span>User</span>
+              <input name="username" autocomplete="username" value="admin">
+            </label>
+            <label>
+              <span>Password</span>
+              <input
+                name="password"
+                type="password"
+                autocomplete="current-password"
+                value="blueberry64"
+              >
+            </label>
+            <label>
+              <span>Router file</span>
+              <input name="scriptFile" value="enable-wifi-as-wan.rsc">
+            </label>
+          </div>
+
+          <h2>WiFi WAN Variables</h2>
+          <div class="field-grid">
+            <label>
+              <span>SSID</span>
+              <input name="ssid" required>
+            </label>
+            <label>
+              <span>WiFi password</span>
+              <input name="wifiPassword" type="password" required>
+            </label>
+            <label>
+              <span>WiFi interfaces</span>
+              <input name="wifiInterfaces" placeholder="wifi1,wifi2">
+            </label>
+            <label>
+              <span>Backup interface</span>
+              <input name="backupWifiInterface" placeholder="wifi2">
+            </label>
+            <label>
+              <span>Internet check targets</span>
+              <input name="internetCheckTargets" placeholder="1.1.1.1,8.8.8.8">
+            </label>
+            <label>
+              <span>NAT comment</span>
+              <input name="natComment">
+            </label>
+          </div>
+
+          <label class="toggle-row">
+            <input name="useWifi2Backup" type="checkbox">
+            <span>Use wifi2 as backup WAN</span>
+          </label>
+
+          <div class="actions">
+            <button type="button" id="saveConfig">Save Variables</button>
+            <button type="button" id="installDefaults">Install defaults</button>
+            <button type="button" id="undoWifiAsWan">Undo WiFi as WAN</button>
+            <button type="button" id="applyConfig" class="primary">Upload & Apply</button>
+          </div>
+        </form>
+
+        <section class="panel">
+          <h2>Bandwidth</h2>
+          <p class="help-text" id="bandwidthNote">Waiting for router status.</p>
+        </section>
+
+        <section class="panel">
+          <h2>Live Detail</h2>
+          <pre id="detailOutput">No status loaded yet.</pre>
+        </section>
+      </section>
+
+      <section id="scriptTab" class="tab-panel">
+        <section class="panel editor-panel">
+          <div class="panel-heading">
+            <div>
+              <h2>RSC Script Editor</h2>
+              <p class="help-text">
+                Edit the default RouterOS script, save it locally, then upload/import it to the
+                router.
+              </p>
+            </div>
+            <button type="button" id="backToControls">Controls</button>
+          </div>
+
+          <div class="editor-tools">
+            <button type="button" id="loadScript">Load Script</button>
+            <button type="button" id="reloadInitialScript">Reload Initial Script</button>
+            <button type="button" id="applyScriptChanges" class="primary">
+              Apply Changes/Overwrite
+            </button>
+            <button type="button" id="saveChanges">Save Changes</button>
+            <label class="file-button">
+              Choose file
+              <input id="scriptFileInput" type="file" accept=".rsc, .txt, text/plain">
+            </label>
+          </div>
+
+          <div class="url-loader">
+            <label>
+              <span>URL</span>
+              <input
+                id="scriptUrl"
+                type="url"
+                placeholder="https://example.com/enable-wifi-as-wan.rsc"
+              >
+            </label>
+            <button type="button" id="loadScriptUrl">Load from URL</button>
+            <button type="button" id="postScriptUrl">Post to URL</button>
+          </div>
+
+          <textarea
+            id="scriptEditor"
+            spellcheck="false"
+            aria-label="RouterOS script editor"
+          ></textarea>
+        </section>
+      </section>
+
+      <dialog id="saveDialog" class="save-dialog">
+        <form method="dialog" class="panel dialog-panel">
+          <h2>Save Changes</h2>
+          <p class="help-text">Choose where to save the current script text.</p>
+          <div class="dialog-actions">
+            <button type="button" id="saveToFilesystem">Filesystem path</button>
+            <button type="button" id="saveToUrl">Post to URL</button>
+            <button type="button" id="downloadScript">Download file</button>
+            <button type="submit">Cancel</button>
+          </div>
+        </form>
+      </dialog>
+    </main>
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>

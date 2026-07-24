@@ -1,0 +1,15 @@
+{
+  "name": "WiFi as WAN Control",
+  "short_name": "WiFi WAN",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#f4f7f5",
+  "theme_color": "#1e5b50",
+  "icons": [
+    {
+      "src": "./icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "WiFi as WAN",
+  "version": "0.1.0",
+  "identifier": "com.tamus.wifiaswan",
+  "build": {
+    "frontendDist": "../../phone-apps/web"
+  },
+  "app": {
+    "windows": [
+      {
+        "title": "WiFi as WAN",
+        "width": 1280,
+        "height": 900,
+        "resizable": true
+      }
+    ],
+    "security": {
+      "csp": null
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": "all",
+    "icon": []
+  }
+}

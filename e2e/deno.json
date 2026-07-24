@@ -1,0 +1,15 @@
+{
+  "tasks": {
+    "router:console": "deno run -A router-console.ts",
+    "test:file-present": "deno test -A router-file-presence.test.ts",
+    "test:external-ping": "deno test -A router-external-ping.test.ts"
+  },
+  "compilerOptions": {
+    "lib": ["deno.ns", "dom", "dom.iterable"]
+  },
+  "fmt": {
+    "lineWidth": 100,
+    "semiColons": true,
+    "singleQuote": false
+  }
+}
